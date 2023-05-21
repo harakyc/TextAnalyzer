@@ -11,7 +11,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class TextAnalyzer {
 	
 	public TextAnalyzer(String doc) {
@@ -28,7 +27,7 @@ public class TextAnalyzer {
 			TreeMap<String, Integer> wordList = new TreeMap<> ();
 			
 			Integer count = 0; //variable that will be used to count frequency of word
-			String words[] = content.split("[”“\\\s—()\"--,.;!?]"); //save each word of the html document and turns into lowercase
+			String words[] = content.split("[”“\\s—()\"--,.;!?]"); //save each word of the html document and turns into lowercase
 			for (String word: words) {
 				word = word.toLowerCase();
 				
@@ -50,10 +49,15 @@ public class TextAnalyzer {
                     return entry2.getValue().compareTo(entry1.getValue());
                 }
             });
-			
+            int counter = 0;
 			//display TreeMap
             for (Map.Entry<String, Integer> entry : entryList) {
                 System.out.println(entry.getKey() + ": " + entry.getValue());
+                counter++;
+                if (counter == 20) {
+                	break;
+                }
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,14 +66,6 @@ public class TextAnalyzer {
 	
 	public static void main(String[] args) {
 		new TextAnalyzer("https://www.gutenberg.org/files/1065/1065-h/1065-h.htm");
-		 try {
-	            Connection connection = Jsoup.connect("http://shakespeare.mit.edu/macbeth/full.html");
-	            Document doc = connection.get();
-	            String htmlContent = doc.html();
-	            System.out.println(htmlContent);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
 	    }
 	}
 
