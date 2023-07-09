@@ -8,7 +8,16 @@ import java.io.IOException;
 import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TextAnalyzerTest {
+/**
+ * Test class for the TextAnalyzer class.
+ */
+
+public class TextAnalyzerTest {
+
+    /**
+     * Test case for a valid URL input.
+     * Validates that creating a TextAnalyzer object with a valid URL does not throw an exception.
+     */
 
     //valid URL test
     @Test
@@ -16,6 +25,11 @@ class TextAnalyzerTest {
         String validURL = "https://www.gutenberg.org/files/1065/1065-h/1065-h.htm";
         Assertions.assertDoesNotThrow(() -> new TextAnalyzer(validURL));
     }
+
+    /**
+     * Test case for invalid URL input.
+     * Ensures that attempting to connect to an invalid URL will throw an exception.
+     */
     //Invalid URL test
     @Test
     public void testInput2(){
